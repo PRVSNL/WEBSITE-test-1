@@ -99,7 +99,9 @@
                 document.getElementById('holdBtn').style.background = "linear-gradient(to right, #333333 " + holdProgress + "%, #909090 " + holdProgress + "%)";
                 if (holdProgress >= 100) {
                     clearInterval(holdAnimationInterval);
-                    window.location.href = "empty for now";
+
+                    // THIS IS WHERE YOU SET THE INDEX.HTML PATH
+                    window.location.href = "1/index.html";
                 }
             }, 30);
         }
