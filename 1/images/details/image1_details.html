@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,15 +8,18 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #0e0e0e; /* Very dark grey almost black */
+            background-color: #0e0e0e;
+            /* Very dark grey almost black */
             color: #ffffff;
             margin: 0;
             display: flex;
             flex-direction: column;
             height: 100vh;
-            overflow-y: auto; /* Enable vertical scrolling */
+            overflow-y: auto;
+            /* Enable vertical scrolling */
             scrollbar-width: thin;
-            scrollbar-color: #3c3b3b #0e0e0e; /* Dark grey on dark background */
+            scrollbar-color: #3c3b3b #0e0e0e;
+            /* Dark grey on dark background */
         }
 
         ::-webkit-scrollbar {
@@ -23,7 +27,8 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background-color: #3c3b3b; /* Dark grey */
+            background-color: #3c3b3b;
+            /* Dark grey */
             width: 5px;
             height: 5px;
             border-radius: 5px;
@@ -33,13 +38,17 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 20px; /* Adjusted padding */
-            background-color: #1a1a1a; /* Dark grey for the header */
+            padding: 10px 20px;
+            /* Adjusted padding */
+            background-color: #1a1a1a;
+            /* Dark grey for the header */
         }
 
         #logo {
-            width: 40px; /* Smaller logo */
-            height: 40px; /* Smaller logo */
+            width: 40px;
+            /* Smaller logo */
+            height: 40px;
+            /* Smaller logo */
         }
 
         nav {
@@ -50,61 +59,77 @@
         nav a {
             color: #ffffff;
             text-decoration: none;
-            margin: 0 10px; /* Smaller margin */
-            font-size: 14px; /* Smaller font size */
+            margin: 0 10px;
+            /* Smaller margin */
+            font-size: 14px;
+            /* Smaller font size */
         }
 
         .main-container {
             display: flex;
-            align-items: flex-start; /* Align to the top */
+            align-items: flex-start;
+            /* Align to the top */
             justify-content: center;
             flex: 1;
-            padding: 10px; /* Added padding for spacing */
-            height: auto; /* Allow container to adjust its height */
+            padding: 10px;
+            /* Added padding for spacing */
+            height: auto;
+            /* Allow container to adjust its height */
         }
 
         .image-container {
             text-align: center;
-            margin-right: 100px; /* Space between main and smaller images */
+            margin-right: 100px;
+            /* Space between main and smaller images */
         }
 
         .image {
-            width: 400px; /* Adjusted the size for better visibility */
-            height: auto; /* Allow the image to adjust its height */
-            margin-bottom: 10px; /* Add empty space under the image */
+            width: 400px;
+            /* Adjusted the size for better visibility */
+            height: auto;
+            /* Allow the image to adjust its height */
+            margin-bottom: 10px;
+            /* Add empty space under the image */
         }
 
         .info-container {
             display: flex;
             flex-direction: column;
-            align-items: flex-start; /* Align to the left */
+            align-items: flex-start;
+            /* Align to the left */
             justify-content: space-around;
             padding: 10px;
-            position: relative;
+            position: sticky;
+            top: 0;
         }
 
         .info {
             text-align: left;
-            position: -webkit-sticky;
             position: sticky;
-            top: 0; /* Stick to the top */
-            margin-left: 20px; /* Adjusted margin for spacing */
+            top: 0;
+            /* Stick to the top */
+            margin-left: 20px;
+            /* Adjusted margin for spacing */
         }
 
         h1 {
-            font-size: 24px; /* Smaller font size */
+            font-size: 24px;
+            /* Smaller font size */
             margin-bottom: 10px;
         }
 
         p {
-            font-size: 14px; /* Smaller font size */
+            font-size: 14px;
+            /* Smaller font size */
             margin-bottom: 10px;
         }
 
         .info-lines {
             text-align: center;
-            overflow-y: auto; /* Enable vertical scrolling for info lines */
-            max-height: 200px; /* Set a maximum height for info lines */
+            overflow-y: auto;
+            /* Enable vertical scrolling for info lines */
+            max-height: 200px;
+            /* Set a maximum height for info lines */
         }
 
         .info-line {
@@ -114,12 +139,15 @@
         }
 
         .info-line:hover {
-            color: #42a5f5; /* Blue color on hover */
+            color: #42a5f5;
+            /* Blue color on hover */
             border-radius: 5px;
-            text-decoration: underline; /* Underline on hover */
+            text-decoration: underline;
+            /* Underline on hover */
         }
     </style>
 </head>
+
 <body>
     <header>
         <div id="logo-container">
@@ -132,9 +160,6 @@
     </header>
 
     <div class="main-container">
-        <div class="image-container">
-            <img class="image" id="mainImage" src="../image1.png" alt="Image 1">
-        </div>
         <div class="info-container">
             <div class="info">
                 <p>ALGO JACKET Gen.1</p>
@@ -142,16 +167,21 @@
                 <p>S M L</p>
                 <p>In Stock</p>
             </div>
-            <div class="info-lines">
-                <p class="info-line" onmouseover="changeImage('image1.png')">Info Line 1</p>
-                <p class="info-line" onmouseover="changeImage('image2.png')">Info Line 2</p>
-                <p class="info-line" onmouseover="changeImage('image3.png')">Info Line 3</p>
-                <p class="info-line" onmouseover="changeImage('image4.png')">Info Line 4</p>
-                <p class="info-line" onmouseover="changeImage('image5.png')">Info Line 5</p>
-                <!-- Add more info lines as needed -->
-            </div>
+
+        </div>
+        <div class="image-container">
+            <img class="image" id="mainImage" src="../image1.png" alt="Image 1">
+        </div>
+        <div class="info-lines">
+            <p class="info-line" onmouseover="changeImage('image1.png')">Info Line 1</p>
+            <p class="info-line" onmouseover="changeImage('image2.png')">Info Line 2</p>
+            <p class="info-line" onmouseover="changeImage('image3.png')">Info Line 3</p>
+            <p class="info-line" onmouseover="changeImage('image4.png')">Info Line 4</p>
+            <p class="info-line" onmouseover="changeImage('image5.png')">Info Line 5</p>
+            <!-- Add more info lines as needed -->
         </div>
     </div>
+
 
     <script>
         // Set the default image
@@ -166,4 +196,5 @@
         }
     </script>
 </body>
+
 </html>
