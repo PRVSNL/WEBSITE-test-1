@@ -77,22 +77,22 @@
             transform: translate(-50%, -50%);
         }
 
-        #loadingScreen {
+        .loadingScreen {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: black; /* Changed background color to black */
-            color: #ffffff;
+            color: #000000;
             z-index: 9999;
             justify-content: center;
             align-items: center;
+            background-color: black; /* Set background color to black */
         }
 
-        #loadingScreen img {
-            width: 400px; /* Increased size of the loading GIF */
+        .loadingScreen img {
+            width: 400px;
             height: 400px;
         }
     </style>
@@ -107,7 +107,7 @@
             <div id="submitButtonContainer">
                 <button type="submit" id="submitBtn">ENTER</button>
             </div>
-            <div id="errorMessage" style="display: none;">Incorrect password.</div>
+            <div id="errorMessage" style="display: none;">INCORRECT PASSWORD</div>
         </form>
     </div>
 
@@ -115,9 +115,14 @@
         <button id="holdBtn" onmousedown="startHold()" onmouseup="endHold()" ontouchstart="startHold()" ontouchend="endHold()" style="display: none;">Hold</button>
     </div>
 
-    <!-- Loading screen with GIF -->
-    <div id="loadingScreen">
+    <!-- Initial loading screen with GIF -->
+    <div id="initialLoadingScreen" class="loadingScreen">
         <img src="loading.gif" alt="Loading...">
+    </div>
+
+    <!-- Terminal loading screen with GIF -->
+    <div id="terminalLoadingScreen" class="loadingScreen">
+        <img src="terminal.gif" alt="Terminal Loading...">
     </div>
 
     <script>
@@ -162,17 +167,26 @@
                 if (holdProgress >= 100) {
                     clearInterval(holdAnimationInterval);
 
-                    // Show loading screen with GIF
-                    document.getElementById('loadingScreen').style.display = 'flex';
+                    // Show initial loading screen with GIF
+                    document.getElementById('initialLoadingScreen').style.display = 'flex';
 
-                    // Set a timeout to stay on the loading screen for at least 4 seconds
+                    // Set a timeout to stay on the initial loading screen for at least 4 seconds
                     loadingScreenTimeout = setTimeout(function() {
                         // Hide other elements
                         document.getElementById('holdBtn').style.display = 'none';
-                        document.getElementById('loadingScreen').style.display = 'none';
+                        document.getElementById('initialLoadingScreen').style.display = 'none';
 
-                        // THIS IS WHERE YOU SET THE INDEX.HTML PATH
-                        window.location.href = "1/index.html";
+                        // Show terminal loading screen with GIF
+                        document.getElementById('terminalLoadingScreen').style.display = 'flex';
+
+                        // Set a timeout to stay on the terminal loading screen for at least 2 seconds
+                        loadingScreenTimeout = setTimeout(function() {
+                            // Hide terminal loading screen
+                            document.getElementById('terminalLoadingScreen').style.display = 'none';
+
+                            // THIS IS WHERE YOU SET THE INDEX.HTML PATH
+                            window.location.href = "1/index.html";
+                        }, 2000);
                     }, 4000);
                 }
             }, 30);
