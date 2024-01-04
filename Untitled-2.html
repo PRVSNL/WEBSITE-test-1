@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
-<head> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PROVISIONAL HEAVY INDUSTRY - Login</title>
     <link rel="icon" href="image.png" type="image/png">
     <style>
@@ -16,24 +18,28 @@
             height: 100vh;
             margin: 0;
         }
+
         input[type="password"] {
             padding: 10px;
             margin: 10px;
             width: 200px;
-            background-color: #4E4E4E; /* Change the background color of the input */
-            color: #ffffff; /* Change the text color */
+            background-color: #4E4E4E;
+            color: #ffffff;
             border: none;
         }
+
         #submitBtn, #holdBtn {
             padding: 10px 20px;
-            background-color: #5C5C5C; /* Change this color to your desired grey shade */
+            background-color: #5C5C5C;
             color: #969696;
             border: none;
             cursor: pointer;
         }
+
         #holdBtn:active {
             animation: holdAnimation 3s;
         }
+
         @keyframes holdAnimation {
             0% {
                 background-color: #2D2D2D;
@@ -42,21 +48,25 @@
                 background-color: #7C7C7C;
             }
         }
-        #loginForm, #holdButtonContainer {
-            display: none;
+
+        #loginForm, #holdButtonContainer, #submitButtonContainer {
+            display: block;
         }
+
         #errorMessage {
-            color: #969696; /* Change this color to your desired grey shade */
-            background-color: #4E4E4E; /* Change this color to your desired white shade */
+            color: #969696;
+            background-color: #4E4E4E;
             padding: 10px;
             margin: 10px;
             display: none;
-            display: inline-block; /* Limit the size to fit the text */
+            display: inline-block;
         }
+
         #logo {
             width: 150px;
             height: 150px;
         }
+
         #holdButtonContainer {
             display: flex;
             justify-content: center;
@@ -66,11 +76,30 @@
             left: 50%;
             transform: translate(-50%, -50%);
         }
+
+        #loadingScreen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black; /* Changed background color to black */
+            color: #ffffff;
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #loadingScreen img {
+            width: 400px; /* Increased size of the loading GIF */
+            height: 400px;
+        }
     </style>
 </head>
 <body>
     <img src="image.png" alt="Logo" id="logo">
-    <div id="loginForm" style="display: block;">
+    <div id="loginForm">
         <h1>PROVISIONAL HEAVY INDUSTRY</h1>
         <form onsubmit="return validateForm()">
             <input type="password" id="password" placeholder="" required>
@@ -86,21 +115,28 @@
         <button id="holdBtn" onmousedown="startHold()" onmouseup="endHold()" ontouchstart="startHold()" ontouchend="endHold()" style="display: none;">Hold</button>
     </div>
 
+    <!-- Loading screen with GIF -->
+    <div id="loadingScreen">
+        <img src="loading.gif" alt="Loading...">
+    </div>
+
     <script>
         var holdAnimationInterval;
         var holdProgress = 0;
+        var loadingScreenTimeout;
 
         function validateForm() {
             var password = document.getElementById('password').value;
             var errorMessage = document.getElementById('errorMessage');
             var submitButtonContainer = document.getElementById('submitButtonContainer');
+            var holdButton = document.getElementById('holdBtn');
 
             if (password === 'TOA') {
                 document.getElementById('loginForm').style.display = 'none';
-                var holdButton = document.getElementById('holdBtn');
                 holdButton.style.display = 'block';
                 document.getElementById('holdButtonContainer').style.display = 'flex';
                 document.getElementById('logo').style.display = 'none'; // Hides the logo
+
                 return false; // Prevents form submission for demonstration purposes
             } else {
                 // Display error message
@@ -126,14 +162,25 @@
                 if (holdProgress >= 100) {
                     clearInterval(holdAnimationInterval);
 
-                    // THIS IS WHERE YOU SET THE INDEX.HTML PATH
-                    window.location.href = "1/index.html";
+                    // Show loading screen with GIF
+                    document.getElementById('loadingScreen').style.display = 'flex';
+
+                    // Set a timeout to stay on the loading screen for at least 4 seconds
+                    loadingScreenTimeout = setTimeout(function() {
+                        // Hide other elements
+                        document.getElementById('holdBtn').style.display = 'none';
+                        document.getElementById('loadingScreen').style.display = 'none';
+
+                        // THIS IS WHERE YOU SET THE INDEX.HTML PATH
+                        window.location.href = "1/index.html";
+                    }, 4000);
                 }
             }, 30);
         }
 
         function endHold() {
             clearInterval(holdAnimationInterval);
+            clearInterval(loadingScreenTimeout);
             holdProgress = 0;
             document.getElementById('holdBtn').style.background = "#272727";
         }
