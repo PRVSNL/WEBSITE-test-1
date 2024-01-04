@@ -45,6 +45,14 @@
         #loginForm, #holdButtonContainer {
             display: none;
         }
+        #errorMessage {
+            color: #969696; /* Change this color to your desired grey shade */
+            background-color: #4E4E4E; /* Change this color to your desired white shade */
+            padding: 10px;
+            margin: 10px;
+            display: none;
+            display: inline-block; /* Limit the size to fit the text */
+        }
         #logo {
             width: 150px;
             height: 150px;
@@ -67,7 +75,10 @@
         <form onsubmit="return validateForm()">
             <input type="password" id="password" placeholder="" required>
             <br>
-            <button type="submit" id="submitBtn">ENTER</button>
+            <div id="submitButtonContainer">
+                <button type="submit" id="submitBtn">ENTER</button>
+            </div>
+            <div id="errorMessage" style="display: none;">Incorrect password.</div>
         </form>
     </div>
 
@@ -81,6 +92,9 @@
 
         function validateForm() {
             var password = document.getElementById('password').value;
+            var errorMessage = document.getElementById('errorMessage');
+            var submitButtonContainer = document.getElementById('submitButtonContainer');
+
             if (password === 'TOA') {
                 document.getElementById('loginForm').style.display = 'none';
                 var holdButton = document.getElementById('holdBtn');
@@ -89,7 +103,18 @@
                 document.getElementById('logo').style.display = 'none'; // Hides the logo
                 return false; // Prevents form submission for demonstration purposes
             } else {
-                alert('Incorrect password.');
+                // Display error message
+                errorMessage.style.display = 'inline-block'; // Set to display inline-block
+                submitButtonContainer.style.display = 'none';
+
+                // Clear error message and show submit button after a delay (optional)
+                setTimeout(function() {
+                    errorMessage.style.display = 'none';
+                    submitButtonContainer.style.display = 'block';
+                }, 3000); // Adjust the delay as needed
+
+                var snd = new Audio('/glitch.mp3');
+                snd.play();
                 return false;
             }
         }
