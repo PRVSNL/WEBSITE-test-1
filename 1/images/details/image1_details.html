@@ -9,17 +9,14 @@
         body {
             font-family: 'Arial', sans-serif;
             background-color: #0e0e0e;
-            /* Very dark grey almost black */
             color: #ffffff;
             margin: 0;
             display: flex;
             flex-direction: column;
             height: 100vh;
             overflow-y: auto;
-            /* Enable vertical scrolling */
             scrollbar-width: thin;
             scrollbar-color: #3c3b3b #0e0e0e;
-            /* Dark grey on dark background */
         }
 
         ::-webkit-scrollbar {
@@ -28,7 +25,6 @@
 
         ::-webkit-scrollbar-thumb {
             background-color: #3c3b3b;
-            /* Dark grey */
             width: 5px;
             height: 5px;
             border-radius: 5px;
@@ -39,16 +35,12 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px 20px;
-            /* Adjusted padding */
             background-color: #1a1a1a;
-            /* Dark grey for the header */
         }
 
         #logo {
             width: 40px;
-            /* Smaller logo */
             height: 40px;
-            /* Smaller logo */
         }
 
         nav {
@@ -60,95 +52,107 @@
             color: #ffffff;
             text-decoration: none;
             margin: 0 10px;
-            /* Smaller margin */
             font-size: 14px;
-            /* Smaller font size */
         }
 
         .main-container {
             display: flex;
             align-items: flex-start;
-            /* Align to the top */
             justify-content: center;
             flex: 1;
             padding: 10px;
-            /* Added padding for spacing */
             height: auto;
-            /* Allow container to adjust its height */
+            margin-left: -25%;
         }
 
-        .image-container {
-            text-align: center;
-            margin-right: 10px;
-            margin-bottom: 40px;
-            /* Space between main and smaller images */
-        }
-
-        .image {
-            width: 400px;
-            /* Adjusted the size for better visibility */
-
-            max-width: 100%;
-            /* max width makes image scale with screen*/
-
-            height: auto;
-            /* Allow the image to adjust its height */
-            margin-bottom: 10px;
-            /* Add empty space under the image */
-        }
-
-        .info-container {
+        .product-info-container {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            /* Align to the left */
             justify-content: space-around;
             padding: 10px;
             position: sticky;
             top: 0;
+            overflow-y: hidden;
+            overflow-x: hidden;
         }
 
         .info {
             text-align: left;
             position: sticky;
             top: 0;
-            /* Stick to the top */
             margin-left: 20px;
-            /* Adjusted margin for spacing */
         }
 
-        h1 {
-            font-size: 24px;
-            /* Smaller font size */
-            margin-bottom: 10px;
+        .size-chooser {
+            display: flex;
+            margin-top: 10px;
+            margin-left: auto;
+            margin-right: 150px;
         }
 
-        p {
-            font-size: 14px;
-            /* Smaller font size */
-            margin-bottom: 10px;
+        .size-chooser select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-color: transparent;
+            border: 1px solid #fff;
+            padding: 4px 150px 4px 10px;
+            color: #fff;
+            font-size: 12px;
+            cursor: pointer;
+            margin-left: 50px;
         }
 
-        .info-lines {
-            text-align: center;
-            overflow-y: auto;
-            /* Enable vertical scrolling for info lines */
-            max-height: 200px;
-            /* Set a maximum height for info lines */
+        .size-chooser select::-ms-expand {
+            display: none;
         }
 
-        .info-line {
+        .size-chooser:after {
+            content: '\25BC';
+            color: #fff;
+            pointer-events: none;
+            margin-left: 5px;
+        }
+
+        .buy-now-button {
+            background-color: #fff;
+            color: #000;
+            padding: 3px 20px 3px 10px;
+            border: none;
+            cursor: pointer;
+            margin-top: 12px;
+            margin-left: auto;
+            margin-right: 260px;
+        }
+
+        .product-pictures {
+            text-align: left;
+            max-height: 300px;
+        }
+
+        .product-image {
             cursor: pointer;
             transition: color 0.3s ease-in-out, text-decoration 0.3s ease-in-out;
             text-align: right;
+            padding-left: 20px;
+            margin-bottom: 5px;
         }
 
-        .info-line:hover {
-            color: #42a5f5;
-            /* Blue color on hover */
-            border-radius: 5px;
+        .product-image.selected {
             text-decoration: underline;
-            /* Underline on hover */
+        }
+
+        .image-container {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .image {
+            width: 400px;
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -165,39 +169,79 @@
     </header>
 
     <div class="main-container">
-        <div class="info-container">
+        <div class="product-info-container">
             <div class="info">
                 <p>ALGO JACKET Gen.1</p>
                 <p>$699.99</p>
-                <p>S M L</p>
                 <p>In Stock</p>
             </div>
-
+            <div class="size-chooser">
+                <select>
+                    <option>S</option>
+                    <option>M</option>
+                    <option>L</option>
+                </select>
+            </div>
+            <button class="buy-now-button">Buy Now</button>
         </div>
         <div class="image-container">
-            <img class="image" id="mainImage" src="../image1.png" alt="Image 1">
+            <img class="image" id="mainImage" src="image1_photos/main_view.png" alt="Image 1">
         </div>
-        <div class="info-lines">
-            <p class="info-line" onmouseover="changeImage('image1.png')">Info Line 1</p>
-            <p class="info-line" onmouseover="changeImage('image2.png')">Info Line 2</p>
-            <p class="info-line" onmouseover="changeImage('image3.png')">Info Line 3</p>
-            <p class="info-line" onmouseover="changeImage('image4.png')">Info Line 4</p>
-            <p class="info-line" onmouseover="changeImage('image5.png')">Info Line 5</p>
-            <!-- Add more info lines as needed -->
+        <div class="product-pictures">
+            <p class="product-image selected" onmouseover="changeImage('image1_photos/main_view.png', this)">Front View
+            </p>
+            <p class="product-image" onmouseover="changeImage('image1_photos/right_quarter.png', this)">Right Quarter
+            </p>
+            <p class="product-image" onmouseover="changeImage('image1_photos/back_view.png', this)">Back view</p>
+            <p class="product-image" onmouseover="changeImage('image1_photos/flak_pocket.png', this)">Flak Pocket</p>
+            <p class="product-image" onmouseover="changeImage('image1_photos/forcelock.png', this)">Forcelock</p>
+            <p class="product-image" onmouseover="changeImage('image1_photos/gravity_pocket.png', this)">Gravity Pocket
+            </p>
+            <p class="product-image" onmouseover="changeImage('image1_photos/left_rear.png', this)">Left Rear</p>
+            <p class="product-image" onmouseover="changeImage('image1_photos/logo_tape.png', this)">Logo Tape</p>
+            <p class="product-image" onmouseover="changeImage('image1_photos/right_rear.png', this)">Right Rear</p>
+            <p class="product-image" onmouseover="changeImage('image1_photos/front_view.png', this)">Front View 2</p>
+            <p class="product-image" onmouseover="changeImage('image1_photos/left_rear.png', this)">Left Rear 2</p>
+            <p class="product-image" onmouseover="changeImage('image1_photos/logo_tape.png', this)">Logo Tape 2</p>
+            <p class="product-image" onmouseover="changeImage('image1_photos/right_rear.png', this)">Right Rear 2</p>
+            <p class="product-image" onmouseover="changeImage('image1_photos/front_view.png', this)">Front View 3</p>
+            <p class="product-image" onmouseover="changeImage('image1_photos/left_rear.png', this)">Left Rear 3</p>
+            <p class="product-image" onmouseover="changeImage('image1_photos/logo_tape.png', this)">Logo Tape 3</p>
+            <p class="product-image" onmouseover="changeImage('image1_photos/right_rear.png', this)">Right Rear 3</p>
         </div>
     </div>
 
+    <div class="main-container">
+        <div class="image-container">
+            <img class="image" src="image1_photos/right_quarter.png" alt="Image 2">
+        </div>
+        <div class="image-container">
+            <img class="image" src="image1_photos/back_view.png" alt="Image 3">
+        </div>
+        <div class="image-container">
+            <img class="image" src="image1_photos/flak_pocket.png" alt="Image 4">
+        </div>
+        <div class="image-container">
+            <img class="image" src="image1_photos/forcelock.png" alt="Image 5">
+        </div>
+    </div>
 
     <script>
-        // Set the default image
-        let currentImage = 'image1.png';
-        document.getElementById('mainImage').src = '../' + currentImage;
+        let currentImage = 'image1_photos/main_view.png';
+        document.getElementById('mainImage').src = currentImage;
 
-        // Add your changeImage function implementation here
-        function changeImage(imagePath) {
-            // Change the image based on the selected info line
+        document.querySelector('.product-image.selected').addEventListener('mouseover', function () {
+            changeImage('image1_photos/main_view.png', this);
+        });
+
+        function changeImage(imagePath, productImage) {
             currentImage = imagePath;
-            document.getElementById('mainImage').src = '../' + currentImage;
+            document.getElementById('mainImage').src = currentImage;
+
+            document.querySelectorAll('.product-image').forEach(function (image) {
+                image.classList.remove('selected');
+            });
+            productImage.classList.add('selected');
         }
     </script>
 </body>
